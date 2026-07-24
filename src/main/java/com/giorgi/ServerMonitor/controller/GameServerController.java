@@ -39,4 +39,9 @@ public class GameServerController {
     public List<GameServer> getServerStatus(@PathVariable Boolean status){
         return service.getServerByStatus(status);
     }
+
+    @GetMapping("/{id}")
+    public GameServer getServerById(@PathVariable Long id){
+        return service.getServerById(id);
+    }
 }

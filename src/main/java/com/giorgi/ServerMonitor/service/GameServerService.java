@@ -36,4 +36,8 @@ public class GameServerService {
     public List<GameServer> getServerByStatus(Boolean status){
         return repository.findByStatus(status);
     }
+
+    public GameServer getServerById(Long id){
+        return repository.findById(id).orElseThrow();
+    }
 }
