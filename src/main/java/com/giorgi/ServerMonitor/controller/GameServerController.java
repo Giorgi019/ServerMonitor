@@ -23,5 +23,13 @@ public class GameServerController {
     public List<GameServer> getServers(){
         return service.getAllServers();
     }
+    @PutMapping("/{id}/latency")
+    public GameServer updateServerLatency(@PathVariable Long id, @RequestParam Integer latency){
+        return service.updateServerLatency(id, latency);
+    }
 
+    @DeleteMapping("/{id}")
+    public void deleteServer(@PathVariable Long id){
+        service.deleteServer(id);
+    }
 }

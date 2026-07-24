@@ -4,6 +4,9 @@ import com.giorgi.ServerMonitor.model.GameServer;
 import com.giorgi.ServerMonitor.repository.GameServerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -20,4 +23,13 @@ public class GameServerService {
         return repository.findAll();
     }
 
+    public GameServer updateServerLatency(Long id, Integer newLatency){
+        GameServer server = repository.findById(id).orElseThrow();
+        server.setLatency(newLatency);
+        return repository.save(server);
+    }
+
+    public void deleteServer(Long id){
+        repository.deleteById(id);
+    }
 }
