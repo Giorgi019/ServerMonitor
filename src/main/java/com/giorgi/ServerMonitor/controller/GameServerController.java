@@ -1,5 +1,6 @@
 package com.giorgi.ServerMonitor.controller;
 
+import com.giorgi.ServerMonitor.dto.GameServerResponseDTO;
 import com.giorgi.ServerMonitor.model.GameServer;
 import com.giorgi.ServerMonitor.service.GameServerService;
 import jakarta.validation.Valid;
@@ -23,7 +24,7 @@ public class GameServerController {
     }
 
     @GetMapping
-    public Page<GameServer> getServers(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size){
+    public Page<GameServerResponseDTO> getServers(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size){
         return service.getAllServers(page, size);
     }
     @PutMapping("/{id}/latency")

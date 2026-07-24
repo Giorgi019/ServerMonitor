@@ -1,5 +1,6 @@
 package com.giorgi.ServerMonitor.service;
 
+import com.giorgi.ServerMonitor.dto.GameServerResponseDTO;
 import com.giorgi.ServerMonitor.model.GameServer;
 import com.giorgi.ServerMonitor.repository.GameServerRepository;
 import org.springframework.data.domain.Page;
@@ -19,9 +20,9 @@ public class GameServerService {
         return repository.save(server);
     }
 
-    public Page<GameServer> getAllServers(Integer pageNumber, Integer pageSize){
+    public Page<GameServerResponseDTO> getAllServers(Integer pageNumber, Integer pageSize){
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        return repository.findAll(pageable);
+        return repository.findAll(pageable).map(GameServerResponseDTO::fromEntity);
     }
 
     public GameServer updateServerLatency(Long id, Integer newLatency){
