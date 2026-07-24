@@ -32,4 +32,8 @@ public class GameServerService {
     public void deleteServer(Long id){
         repository.deleteById(id);
     }
+
+    public List<GameServer> getServerByStatus(Boolean status){
+        return repository.findByStatus(status);
+    }
 }
