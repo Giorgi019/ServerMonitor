@@ -3,6 +3,7 @@ package com.giorgi.ServerMonitor.controller;
 import com.giorgi.ServerMonitor.model.GameServer;
 import com.giorgi.ServerMonitor.service.GameServerService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +23,8 @@ public class GameServerController {
     }
 
     @GetMapping
-    public List<GameServer> getServers(){
-        return service.getAllServers();
+    public Page<GameServer> getServers(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size){
+        return service.getAllServers(page, size);
     }
     @PutMapping("/{id}/latency")
     public GameServer updateServerLatency(@PathVariable Long id, @RequestParam Integer latency){
